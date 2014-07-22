@@ -1,0 +1,8 @@
+{
+	"rpc_addr" : "http://example.com/transmission/rpc",
+	"rpc_user" : "username",
+	"rpc_pass" : "password",
+	"file_storage" : "data",
+	"file_log" : "log",
+	"time_limit" : 864000
+}

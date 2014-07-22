@@ -1,0 +1,13 @@
+{
+	"name" : "TranStats",
+	"version" : "0.0.1",
+	"description" : "Torrents-upload-history-delivery-man-server. To be used with the rest of the TranStats suite.",
+	"author" : "as0n <as@n.gnab.fr> (http://aslab.gnab.fr)",
+	"dependencies" : {
+		"express" :		"4.6.x",
+		"compression" :	"1.0.x",
+		"body-parser" :	"1.5.x",
+		"morgan" :		"1.2.x",
+		"request" :		"2.37.x"
+	}
+}

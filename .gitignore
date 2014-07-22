@@ -1,0 +1,6 @@
+*.pyc
+my.settings.json
+scrap/data
+scrap/log
+scrap/scrapper.sh
+server/node_modules

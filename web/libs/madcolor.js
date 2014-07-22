@@ -1,0 +1,1 @@
+../../../aslab/madcolor.js

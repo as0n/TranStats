@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>TranStats</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<header>
+			<h1>TranStats</h1>
+			<img src="loading.gif" id="loading" style="display : hidden">
+			<p id="menu"></p>
+		</header>
+		<div id="content">
+			<table id="mainTable">
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>Nom</th>
+					<th>Vitesse</th>
+					<th>Avancement</th>
+					<th>Envoyé</th>
+					<th>Ratio</th>
+					<th>Diff</th>
+					<th>1 heure</th>
+					<th>1 jour</th>
+					<th>Denière activité</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		</div>
+		<script type="text/x-handlebars-template" id="tplTorLine">
+			<tr class="tor{{#unless active}} inactive{{/unless}}" id="t{{ hash }}">
+				<td>{{ id }}</td>
+				<td><abbr title="{{ hash }}">{{ name }}</abbr> <span class="info">{{ downloadDir }}</span></td>
+				<td class="data">{{#if rateUpload}}&uarr; {{speed rateUpload}}{{/if}} {{#if rateDownload}}&darr; {{speed rateDownload}}{{/if}}</td>
+				<td class="data">{{size downloadedEver}} / {{size totalSize}} <span class="info">{{ pct }} %</span></td>
+				<td class="data">{{size uploadedEver}}</td>
+				<td class="data" style="color : {{colorRatio ratio}}">{{ ratio }}</td>
+				<td class="data" style="color : {{colorDiff diff}}">{{size diff}}</td>
+				<td class="data">{{deriv hour.value uploadedEver}}</td>
+				<td class="data">{{deriv day.value uploadedEver}}</td>
+				<td class="data">{{ago activityDate}}</td>
+			</tr>
+		</script>
+		<script type="text/x-handlebars-template" id="tplMenu">
+			<b>{{#if uploadSpeed}}&uarr;{{speed uploadSpeed}}{{/if}} {{#if downloadSpeed}}&darr;{{speed downloadSpeed}}{{/if}}</b>
+			[<b>Actifs</b> {{ activeTorrentCount }}/{{ torrentCount }}]
+			[<b><abbr title="Session : &uarr;{{size [current-stats].uploadedBytes}} &darr;{{size [current-stats].downloadedBytes}}">Total</abbr></b> &uarr;{{size [cumulative-stats].uploadedBytes}} &darr;{{size [cumulative-stats].downloadedBytes}}]
+		</script>
+		<script type="text/javascript" src="libs/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="libs/handlebars-v1.3.0.js"></script>
+		<script type="text/javascript" src="libs/madcolor.js"></script>
+		<script type="text/javascript" src="ts.js"></script>
+	</body>
+</html>
