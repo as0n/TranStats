@@ -58,7 +58,7 @@ ts = (function() {
 		return lastActivity.join(':');
 	});
 	Handlebars.registerHelper('colorRatio', function(ratio) {
-		return genColor(ratio - targetRatio, data.maxRatio - targetRatio, targetRatio);
+		return typeof ratio === "number" ? genColor(ratio - targetRatio, data.maxRatio - targetRatio, targetRatio) : genColor(1, 1, 1);
 	});
 	Handlebars.registerHelper('colorDiff', function(diff) {
 		return genColor(diff, data.maxDiff, data.minDiff);

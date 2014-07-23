@@ -38,7 +38,7 @@
 				<td class="data">{{#if rateUpload}}&uarr; {{speed rateUpload}}{{/if}} {{#if rateDownload}}&darr; {{speed rateDownload}}{{/if}}</td>
 				<td class="data">{{size downloadedEver}} / {{size totalSize}} <span class="info">{{ pct }} %</span></td>
 				<td class="data">{{size uploadedEver}}</td>
-				<td class="data" style="color : {{colorRatio ratio}}">{{ ratio }}</td>
+				<td class="data" style="color : {{colorRatio ratio}}">{{{ ratio }}}</td>
 				<td class="data" style="color : {{colorDiff diff}}">{{size diff}}</td>
 				<td class="data">{{deriv hour.value uploadedEver}}</td>
 				<td class="data">{{deriv day.value uploadedEver}}</td>

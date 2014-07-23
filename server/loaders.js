@@ -79,9 +79,9 @@ function loadFromRpc() {
 			torrents[hash].hash = hash;
 			torrents[hash].pct = round(tor.downloadedEver*100/tor.totalSize, 2);
 			torrents[hash].diff = tor.uploadedEver - tor.downloadedEver;
-			torrents[hash].ratio = round(tor.uploadedEver / tor.downloadedEver, 2);
+			torrents[hash].ratio = tor.downloadedEver > 0 ? round(tor.uploadedEver / tor.downloadedEver, 2) : "+ &infin;";
 
-			maxRatio = Math.max(maxRatio, torrents[hash].ratio);
+			if (typeof torrents[hash].ratio === "number") maxRatio = Math.max(maxRatio, torrents[hash].ratio);
 			maxDiff = Math.max(maxDiff, torrents[hash].diff);
 			minDiff = Math.max(minDiff, -torrents[hash].diff);
 		}
