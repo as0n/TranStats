@@ -23,12 +23,6 @@ ts = (function() {
 		$t.css("box-shadow", $t.scrollTop() > 1 ? "inset 0 0 10px black" : "none");
 	});
 
-	madcolor.apply(document.getElementsByTagName("body")[0], {
-		colorRange : 40,
-		showHexCode : false,
-		showMap : false
-	});
-
 	function round(x, n) {
 		var p = Math.pow(10, n);
 		return Math.round(x*p)/p;
@@ -56,7 +50,6 @@ ts = (function() {
 			hours = ((delta - secs - 60*mins)/3600)%24,
 			days = (delta - secs - 60*mins - 3600*hours)/86400,
 			lastActivity = [];
-		console.log(delta);
 		if (days > 0) lastActivity.push(days);
 		if (lastActivity.length > 0 || hours > 0) lastActivity.push(hours);
 		if (lastActivity.length > 0 || mins > 0) lastActivity.push(mins);
@@ -80,7 +73,7 @@ ts = (function() {
 			return 1 - Math.exp(-x*7);
 		}
 		var s = val >= 0 ? repart(val/maxValue) : repart(-val/minValue);
-		return madcolor.Color.fromHSV(val > 0 ? 120 : 0, s, 0.8);
+		return madcolor.color.fromHSV(val > 0 ? 120 : 0, s, 0.8);
 	}
 
 	function conn(hashList, cb) {
@@ -100,11 +93,9 @@ ts = (function() {
 			data = incData;
 
 			menu.html(tplMenu(data.session));
-			console.log(2);
 
 			$('tr.tor').remove();
 			for (var key in data.torrents) table.append(tplTorrent(data.torrents[key]));
-			console.log(3);
 
 			loader.hide();
 		});

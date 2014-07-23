@@ -21,4 +21,4 @@ Daily and hourly stats !
  - change the first var declaration of `web/ts.js` to **your** aggregation server endpoint.
 
 ## Features
- - Awesome background !
+ - [Awesome background](https://github.com/as0n/madcolor) !
