@@ -13,5 +13,5 @@ python ts_scrap.py >> $logfile" > scrap/scrapper.sh
 chmod u+x scrap/scrapper.sh
 
 # Register the cron job.
-task="0 * * * * $dir/scrap/scrapper.sh"
+task="0 * * * * $dir/scrap/scrapper.sh "
 (crontab -l 2>/dev/null | grep -Fv "scrapper.sh" ; printf -- "$task\r\n" ) | crontab
