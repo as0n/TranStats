@@ -61,7 +61,7 @@ ts = (function() {
 		if (lastActivity.length > 0 || hours > 0) lastActivity.push(hours);
 		if (lastActivity.length > 0 || mins > 0) lastActivity.push(mins);
 		if (lastActivity.length > 0 || secs > 0) lastActivity.push(secs);
-		for (var j = 0; j<lastActivity.length; j++) if (lastActivity[j] < 10) lastActivity[j] = "0"+lastActivity[j];
+		for (var j = lastActivity.length-1; j>Math.max(0, lastActivity.length-4); j--) if (lastActivity[j] < 10) lastActivity[j] = "0"+lastActivity[j];
 		return lastActivity.join(':');
 	});
 	Handlebars.registerHelper('colorRatio', function(ratio) {
