@@ -61,7 +61,8 @@ function loadFromRpc() {
 	connRpc("torrent-get", {
 		fields : ["id", "name", "totalSize", "downloadedEver", "uploadedEver", "activityDate", "downloadDir", "rateDownload", "rateUpload", "status", "hashString"]
 	}, function(data) {
-		var tor, hash;
+		var newTorrents = {},
+			tor, hash;
 
 		maxRatio = 0;
 		minDiff = 0;
@@ -88,6 +89,8 @@ function loadFromRpc() {
 			torrents[hash].deltaD = tor.uploadedEver - torrents[hash].day.value;
 			torrents[hash].deltaTD = tor.uploadedEver - torrents[hash].tday.value;
 
+			newTorrents[hash] = torrents[hash];
+
 			if (typeof torrents[hash].ratio === "number") maxRatio = Math.max(maxRatio, torrents[hash].ratio);
 			maxDiff = Math.max(maxDiff, torrents[hash].diff);
 			minDiff = Math.max(minDiff, -torrents[hash].diff);
@@ -95,6 +98,8 @@ function loadFromRpc() {
 			maxDD = Math.max(maxDD, torrents[hash].deltaD);
 			maxDTD = Math.max(maxDTD, torrents[hash].deltaTD);
 		}
+
+		torrents = newTorrents;
 	});
 }
 
