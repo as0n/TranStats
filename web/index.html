@@ -18,12 +18,12 @@
 					<th>id</th>
 					<th>Nom</th>
 					<th>Vitesse</th>
-					<th>Avancement</th>
+					<th>Total</th>
 					<th>Envoyé</th>
 					<th>Ratio</th>
 					<th>Diff</th>
-					<th>1 heure</th>
 					<th>1 jour</th>
+					<th>10 jours</th>
 					<th>Denière activité</th>
 				</tr>
 			</thead>
@@ -34,14 +34,14 @@
 		<script type="text/x-handlebars-template" id="tplTorLine">
 			<tr class="tor{{#unless active}} inactive{{/unless}}" id="t{{ hash }}">
 				<td>{{ id }}</td>
-				<td><abbr title="{{ hash }}">{{ name }}</abbr> <span class="info">{{ downloadDir }}</span></td>
+				<td><abbr title="{{ hash }}" class="limited">{{ name }}</abbr> <span class="info">{{ downloadDir }}</span></td>
 				<td class="data">{{#if rateUpload}}&uarr; {{speed rateUpload}}{{/if}} {{#if rateDownload}}&darr; {{speed rateDownload}}{{/if}}</td>
-				<td class="data">{{size downloadedEver}} / {{size totalSize}} <span class="info">{{ pct }} %</span></td>
+				<td class="data"><abbr title="{{size downloadedEver}} téléchargés ({{ pct }} %)">{{size totalSize}}</abbr></td>
 				<td class="data">{{size uploadedEver}}</td>
-				<td class="data" style="color : {{colorRatio ratio}}">{{{ ratio }}}</td>
+				<td class="data" style="color : {{colorRatio ratio}}"><abbr title="envoyé {{ altRatio }} fois">{{{ ratio }}}</abbr></td>
 				<td class="data" style="color : {{colorDiff diff}}">{{size diff}}</td>
-				<td class="data">{{deriv hour.value uploadedEver}}</td>
-				<td class="data">{{deriv day.value uploadedEver}}</td>
+				<td class="data" style="color : {{colorDeltaD deltaD}}">{{#if deltaD}}<abbr title="{{#if deltaH}}dernière heure : {{size deltaH}}{{/if}}">{{size deltaD}}</abbr>{{/if}}</td>
+				<td class="data" style="color : {{colorDeltaTD deltaTD}}">{{#if deltaTD}}{{size deltaTD}}{{/if}}</td>
 				<td class="data">{{ago activityDate}}</td>
 			</tr>
 		</script>

@@ -19,7 +19,7 @@ var request = require('request'),
 var torrents = {},
 	session = {},
 	hdrs = {},
-	maxRatio, minDiff, MaxDiff;
+	maxRatio, minDiff, MaxDiff, maxDH, maxDD, maxDTD;
 
 function round(x, n) {
 	var p = Math.pow(10, n);
@@ -66,6 +66,9 @@ function loadFromRpc() {
 		maxRatio = 0;
 		minDiff = 0;
 		maxDiff = 0;
+		maxDH = 0;
+		maxDD = 0;
+		maxDTD = 0;
 
 		for (var i = 0; i<data.torrents.length; i++) {
 			tor = data.torrents[i];
@@ -80,10 +83,17 @@ function loadFromRpc() {
 			torrents[hash].pct = round(tor.downloadedEver*100/tor.totalSize, 2);
 			torrents[hash].diff = tor.uploadedEver - tor.downloadedEver;
 			torrents[hash].ratio = tor.downloadedEver > 0 ? round(tor.uploadedEver / tor.downloadedEver, 2) : "+ &infin;";
+			torrents[hash].altRatio = round(tor.uploadedEver / tor.totalSize, 2);
+			torrents[hash].deltaH = tor.uploadedEver - torrents[hash].hour.value;
+			torrents[hash].deltaD = tor.uploadedEver - torrents[hash].day.value;
+			torrents[hash].deltaTD = tor.uploadedEver - torrents[hash].tday.value;
 
 			if (typeof torrents[hash].ratio === "number") maxRatio = Math.max(maxRatio, torrents[hash].ratio);
 			maxDiff = Math.max(maxDiff, torrents[hash].diff);
 			minDiff = Math.max(minDiff, -torrents[hash].diff);
+			maxDH = Math.max(maxDH, torrents[hash].deltaH);
+			maxDD = Math.max(maxDD, torrents[hash].deltaD);
+			maxDTD = Math.max(maxDTD, torrents[hash].deltaTD);
 		}
 	});
 }
@@ -105,6 +115,7 @@ function loadFromLog() {
 			now = new Date()/1000,
 			hourAgo = now - 36000,
 			dayAgo = now - 86400,
+			tenDaysAgo = now - 864000,
 			words,
 			time, hash, value;
 
@@ -117,10 +128,6 @@ function loadFromLog() {
 			if (hash === undefined) continue;
 
 			torrents[hash] = torrents[hash] || {};
-			if (!torrents[hash].now || Math.abs(now - time) < Math.abs(now - torrents[hash].now.time)) torrents[hash].now = {
-				time : time,
-				value : value
-			}
 			if (!torrents[hash].hour || Math.abs(hourAgo - time) < Math.abs(hourAgo - torrents[hash].hour.time)) torrents[hash].hour = {
 				time : time,
 				value : value
@@ -129,6 +136,18 @@ function loadFromLog() {
 				time : time,
 				value : value
 			}
+			if (!torrents[hash].tday || Math.abs(tenDaysAgo - time) < Math.abs(tenDaysAgo - torrents[hash].tday.time)) torrents[hash].tday = {
+				time : time,
+				value : value
+			}
+
+			torrents[hash].deltaH = torrents[hash].uploadedEver - torrents[hash].hour.value;
+			torrents[hash].deltaD = torrents[hash].uploadedEver - torrents[hash].day.value;
+			torrents[hash].deltaTD = torrents[hash].uploadedEver - torrents[hash].tday.value;
+
+			maxDH = Math.max(maxDH, torrents[hash].deltaH);
+			maxDD = Math.max(maxDD, torrents[hash].deltaD);
+			maxDTD = Math.max(maxDTD, torrents[hash].deltaTD);
 		}
 	});
 }
@@ -148,7 +167,10 @@ module.exports = {
 			session : session,
 			maxRatio : maxRatio,
 			minDiff : minDiff,
-			maxDiff : maxDiff
+			maxDiff : maxDiff,
+			maxDH : maxDH,
+			maxDD : maxDD,
+			maxDTD : maxDTD
 		};
 	}
 }

@@ -63,9 +63,11 @@ ts = (function() {
 	Handlebars.registerHelper('colorDiff', function(diff) {
 		return genColor(diff, data.maxDiff, data.minDiff);
 	});
-	Handlebars.registerHelper('deriv', function(past, current) {
-		if (past == current) return "";
-		else return normSize(current - past);
+	Handlebars.registerHelper('colorDeltaD', function(deltad) {
+		return genColor(deltad, data.maxDD, 0);
+	});
+	Handlebars.registerHelper('colorDeltaTD', function(deltatd) {
+		return genColor(deltatd, data.maxDTD, 0);
 	});
 
 	function genColor(val, maxValue, minValue) {

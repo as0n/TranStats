@@ -32,7 +32,7 @@ header #menu {
 		bottom : 0;
 		left : 0;
 		right : 0;
-		top : 45px;
+		top : 40px;
 	overflow : auto;
 	transition : 0.5s;
 }
@@ -47,11 +47,9 @@ table tr:hover td {
 }
 
 table td, table th {
-	max-width : 500px;
+	max-height : 10px;
 	padding : 1px 4px;
-	overflow : hidden;
 	position : relative;
-	text-overflow : ellipsis;
 	white-space : nowrap;
 }
 table td.data {
@@ -63,6 +61,12 @@ table tr.inactive td {
 
 abbr {
 	border : none;
+}
+abbr.limited {
+	display : inline-block;
+	max-width : 600px;
+	overflow : hidden;
+	text-overflow : ellipsis;
 }
 
 .info {
