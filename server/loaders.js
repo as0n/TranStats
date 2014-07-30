@@ -85,9 +85,11 @@ function loadFromRpc() {
 			torrents[hash].diff = tor.uploadedEver - tor.downloadedEver;
 			torrents[hash].ratio = tor.downloadedEver > 0 ? round(tor.uploadedEver / tor.downloadedEver, 2) : "+ &infin;";
 			torrents[hash].altRatio = round(tor.uploadedEver / tor.totalSize, 2);
-			torrents[hash].deltaH = tor.uploadedEver - torrents[hash].hour.value;
-			torrents[hash].deltaD = tor.uploadedEver - torrents[hash].day.value;
-			torrents[hash].deltaTD = tor.uploadedEver - torrents[hash].tday.value;
+			if (torrents[hash].hour) {
+				torrents[hash].deltaH = tor.uploadedEver - torrents[hash].hour.value;
+				torrents[hash].deltaD = tor.uploadedEver - torrents[hash].day.value;
+				torrents[hash].deltaTD = tor.uploadedEver - torrents[hash].tday.value;
+			}
 
 			newTorrents[hash] = torrents[hash];
 
