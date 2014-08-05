@@ -96,9 +96,11 @@ function loadFromRpc() {
 			if (typeof torrents[hash].ratio === "number") maxRatio = Math.max(maxRatio, torrents[hash].ratio);
 			maxDiff = Math.max(maxDiff, torrents[hash].diff);
 			minDiff = Math.max(minDiff, -torrents[hash].diff);
-			maxDH = Math.max(maxDH, torrents[hash].deltaH);
-			maxDD = Math.max(maxDD, torrents[hash].deltaD);
-			maxDTD = Math.max(maxDTD, torrents[hash].deltaTD);
+			if (torrents[hash].hour) {
+				maxDH = Math.max(maxDH, torrents[hash].deltaH);
+				maxDD = Math.max(maxDD, torrents[hash].deltaD);
+				maxDTD = Math.max(maxDTD, torrents[hash].deltaTD);
+			}
 		}
 
 		torrents = newTorrents;
