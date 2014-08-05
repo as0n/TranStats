@@ -16,6 +16,7 @@ ts = (function() {
 		tplTorrent = Handlebars.compile($('#tplTorLine').html()),
 		tplMenu = Handlebars.compile($('#tplMenu').html()),
 		targetRatio = 10,
+		minTDOutput = 1024*1024*1024, //1Go
 		data;
 
 	$('#content').scroll(function() {
@@ -58,7 +59,7 @@ ts = (function() {
 		return lastActivity.join(':');
 	});
 	Handlebars.registerHelper('colorRatio', function(ratio) {
-		return typeof ratio === "number" ? genColor(ratio - targetRatio, data.maxRatio - targetRatio, targetRatio) : genColor(1, 1, 1);
+		return typeof ratio === "number" ? genColorOffset(ratio, data.maxRatio, targetRatio) : genColor(1, 1, 1);
 	});
 	Handlebars.registerHelper('colorDiff', function(diff) {
 		return genColor(diff, data.maxDiff, data.minDiff);
@@ -67,7 +68,7 @@ ts = (function() {
 		return genColor(deltad, data.maxDD, 0);
 	});
 	Handlebars.registerHelper('colorDeltaTD', function(deltatd) {
-		return genColor(deltatd, data.maxDTD, 0);
+		return genColorOffset(deltatd, data.maxDTD, minTDOutput);
 	});
 
 	function genColor(val, maxValue, minValue) {
@@ -76,6 +77,9 @@ ts = (function() {
 		}
 		var s = val >= 0 ? repart(val/maxValue) : repart(-val/minValue);
 		return madcolor.color.fromHSV(val > 0 ? 120 : 0, s, 0.8);
+	}
+	function genColorOffset(val, max, mean) {
+		return genColor(val-mean, max-mean, mean);
 	}
 
 	function conn(hashList, cb) {

@@ -40,8 +40,8 @@
 				<td class="data">{{size uploadedEver}}</td>
 				<td class="data" style="color : {{colorRatio ratio}}"><abbr title="envoyé {{ altRatio }} fois">{{{ ratio }}}</abbr></td>
 				<td class="data" style="color : {{colorDiff diff}}">{{size diff}}</td>
-				<td class="data" style="color : {{colorDeltaD deltaD}}">{{#if deltaD}}<abbr title="{{#if deltaH}}dernière heure : {{size deltaH}}{{/if}}">{{size deltaD}}</abbr>{{/if}}</td>
-				<td class="data" style="color : {{colorDeltaTD deltaTD}}">{{#if deltaTD}}{{size deltaTD}}{{/if}}</td>
+				<td class="data" style="color : {{colorDeltaD deltaD}}">{{#if deltaD}}<abbr title="{{ago day.time}}{{#if deltaH}} | dernière heure : {{size deltaH}} ({{ago hour.time}}){{/if}}">{{size deltaD}}</abbr>{{/if}}</td>
+				<td class="data" style="color : {{colorDeltaTD deltaTD}}">{{#if deltaTD}}<abbr title="{{ago tday.time}}">{{size deltaTD}}</abbr>{{/if}}</td>
 				<td class="data">{{ago activityDate}}</td>
 			</tr>
 		</script>
