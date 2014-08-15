@@ -4,7 +4,7 @@ body {
 	font-family : "Ubuntu Mono";
 	font-size : 13px;
 	margin : 0;
-	text-shadow : 0 0 5px black;
+	text-shadow : 0 0 10px black;
 }
 
 header {
@@ -42,7 +42,7 @@ table {
 	width : 100%;
 }
 
-table tr:hover td {
+table tr:hover {
 	background : black;
 }
 
@@ -64,7 +64,7 @@ abbr {
 }
 abbr.limited {
 	display : inline-block;
-	max-width : 600px;
+	max-width : 550px;
 	overflow : hidden;
 	text-overflow : ellipsis;
 	vertical-align : middle;

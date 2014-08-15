@@ -70,6 +70,14 @@ ts = (function() {
 	Handlebars.registerHelper('colorDeltaTD', function(deltatd) {
 		return genColorOffset(deltatd, data.maxDTD, minTDOutput);
 	});
+	Handlebars.registerHelper('fade', function(value, max) {
+		var dt = (new Date().getTime())/1000 - value,
+			Dt = max*24*60*60,
+			res = round(dt/Dt, 2);
+		console.log(dt+" "+Dt);
+		console.log(res);
+		return res;
+	});
 
 	function genColor(val, maxValue, minValue) {
 		function repart(x) {
