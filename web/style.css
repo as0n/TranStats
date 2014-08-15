@@ -67,6 +67,7 @@ abbr.limited {
 	max-width : 600px;
 	overflow : hidden;
 	text-overflow : ellipsis;
+	vertical-align : middle;
 }
 
 .info {
