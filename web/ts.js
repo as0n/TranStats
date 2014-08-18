@@ -1,9 +1,7 @@
 /* -- TODO
- * - barre de progression (téléchargé) animée : check github
  * - tri par dossier
  * - tri par tracker
  * - tri dynamique des colonnes
- * - historique d'envoi (quotidien, hebdo, ...)
  */
 
 ts = (function() {
@@ -74,7 +72,7 @@ ts = (function() {
 		var dt = (new Date().getTime())/1000 - value,
 			Dt = max*24*60*60,
 			res = round(dt/Dt, 2);
-		return res;
+		return 0.25 + 0.75*res;
 	});
 	Handlebars.registerHelper('progress', function(pct) {
 		console.log(pct);
