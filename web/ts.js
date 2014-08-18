@@ -16,7 +16,7 @@ ts = (function() {
 		tplTorrent = Handlebars.compile($('#tplTorLine').html()),
 		tplMenu = Handlebars.compile($('#tplMenu').html()),
 		targetRatio = 10,
-		minTDOutput = 1024*1024*1024, //1Go
+		minTDOutput = 2*1024*1024*1024, //2Go
 		data;
 
 	$('#content').scroll(function() {
@@ -74,8 +74,6 @@ ts = (function() {
 		var dt = (new Date().getTime())/1000 - value,
 			Dt = max*24*60*60,
 			res = round(dt/Dt, 2);
-		console.log(dt+" "+Dt);
-		console.log(res);
 		return res;
 	});
 
