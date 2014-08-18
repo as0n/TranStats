@@ -122,7 +122,7 @@ function loadFromLog() {
 
 		var lines = data.split('\n'),
 			now = new Date()/1000,
-			hourAgo = now - 36000,
+			hourAgo = now - 3600,
 			dayAgo = now - 86400,
 			tenDaysAgo = now - 864000,
 			words,
