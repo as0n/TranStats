@@ -76,6 +76,11 @@ ts = (function() {
 			res = round(dt/Dt, 2);
 		return res;
 	});
+	Handlebars.registerHelper('progress', function(pct) {
+		console.log(pct);
+		if (pct >= 100) return;
+		return "background : linear-gradient(to right, rgba(0,0,0,0.5) "+pct+"%, rgba(0,0,0,0) "+pct+"%)";
+	});
 
 	function genColor(val, maxValue, minValue) {
 		function repart(x) {
