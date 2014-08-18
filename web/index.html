@@ -49,7 +49,7 @@
 		<script type="text/x-handlebars-template" id="tplMenu">
 			<b>{{#if uploadSpeed}}<span class="glyphicon glyphicon-arrow-up"></span>{{speed uploadSpeed}}{{/if}} {{#if downloadSpeed}}<span class="glyphicon glyphicon-arrow-down"></span>{{speed downloadSpeed}}{{/if}}</b>
 			[<b>Actifs</b> {{ activeTorrentCount }}/{{ torrentCount }}]
-			[<b><abbr title="Session : <span class=\"glyphicon glyphicon-arrow-up\"></span>{{size [current-stats].uploadedBytes}} <span class=\"glyphicon glyphicon-arrow-up\"></span>{{size [current-stats].downloadedBytes}}">Total</abbr></b> <span class="glyphicon glyphicon-arrow-up"></span>{{size [cumulative-stats].uploadedBytes}} <span class="glyphicon glyphicon-arrow-down"></span>{{size [cumulative-stats].downloadedBytes}}]
+			[<b><abbr title="Session : &uarr; {{size [current-stats].uploadedBytes}} &darr; {{size [current-stats].downloadedBytes}}">Total</abbr></b> <span class="glyphicon glyphicon-arrow-up"></span> {{size [cumulative-stats].uploadedBytes}} <span class="glyphicon glyphicon-arrow-down"></span> {{size [cumulative-stats].downloadedBytes}}]
 		</script>
 		<script type="text/javascript" src="libs/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="libs/handlebars-v1.3.0.js"></script>
