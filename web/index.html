@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>TranStats</title>
+		<link rel="stylesheet" href="libs/bootstrap.css">
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body class="mc" mc-color-period="4" mc-display-period="0.5" mc-color-range-min="10" mc-color-range-max="40" mc-show-hexcode="false" mc-show-map="false">
@@ -24,7 +25,7 @@
 					<th>Diff</th>
 					<th>1 jour</th>
 					<th>10 jours</th>
-					<th>Dernière activité</th>
+					<th>Inactivité</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -35,7 +36,7 @@
 			<tr class="tor{{#unless active}} inactive{{/unless}}" id="t{{ hash }}">
 				<td>{{ id }}</td>
 				<td><abbr title="{{ hash }}" class="limited">{{ name }}</abbr> <span class="info">{{ downloadDir }}</span></td>
-				<td class="data">{{#if rateUpload}}&uarr; {{speed rateUpload}}{{/if}} {{#if rateDownload}}&darr; {{speed rateDownload}}{{/if}}</td>
+				<td class="data">{{#if rateUpload}}<span class="glyphicon glyphicon-arrow-up"></span> {{speed rateUpload}}{{/if}} {{#if rateDownload}}<span class="glyphicon glyphicon-arrow-down"></span> {{speed rateDownload}}{{/if}}</td>
 				<td class="data"><abbr title="{{size downloadedEver}} téléchargés ({{ pct }} %)">{{size totalSize}}</abbr></td>
 				<td class="data">{{size uploadedEver}}</td>
 				<td class="data" style="color : {{colorRatio ratio}}"><abbr title="envoyé {{ altRatio }} fois">{{{ ratio }}}</abbr></td>
@@ -46,9 +47,9 @@
 			</tr>
 		</script>
 		<script type="text/x-handlebars-template" id="tplMenu">
-			<b>{{#if uploadSpeed}}&uarr;{{speed uploadSpeed}}{{/if}} {{#if downloadSpeed}}&darr;{{speed downloadSpeed}}{{/if}}</b>
+			<b>{{#if uploadSpeed}}<span class="glyphicon glyphicon-arrow-up"></span>{{speed uploadSpeed}}{{/if}} {{#if downloadSpeed}}<span class="glyphicon glyphicon-arrow-down"></span>{{speed downloadSpeed}}{{/if}}</b>
 			[<b>Actifs</b> {{ activeTorrentCount }}/{{ torrentCount }}]
-			[<b><abbr title="Session : &uarr;{{size [current-stats].uploadedBytes}} &darr;{{size [current-stats].downloadedBytes}}">Total</abbr></b> &uarr;{{size [cumulative-stats].uploadedBytes}} &darr;{{size [cumulative-stats].downloadedBytes}}]
+			[<b><abbr title="Session : <span class=\"glyphicon glyphicon-arrow-up\"></span>{{size [current-stats].uploadedBytes}} <span class=\"glyphicon glyphicon-arrow-up\"></span>{{size [current-stats].downloadedBytes}}">Total</abbr></b> <span class="glyphicon glyphicon-arrow-up"></span>{{size [cumulative-stats].uploadedBytes}} <span class="glyphicon glyphicon-arrow-down"></span>{{size [cumulative-stats].downloadedBytes}}]
 		</script>
 		<script type="text/javascript" src="libs/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="libs/handlebars-v1.3.0.js"></script>
