@@ -72,7 +72,7 @@ ts = (function() {
 		var dt = (new Date().getTime())/1000 - value,
 			Dt = max*24*60*60,
 			res = round(dt/Dt, 2);
-		return 0.25 + 0.75*res;
+		return 0.2 + 0.6*res;
 	});
 	Handlebars.registerHelper('progress', function(pct) {
 		console.log(pct);
