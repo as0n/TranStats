@@ -43,6 +43,7 @@ ts = (function() {
 		return normSize(speed, true);
 	});
 	Handlebars.registerHelper('ago', function(time) {
+		if (!time) return "+ &infin;"
 		var delta = round(new Date()/1000, 0) - time,
 			secs = delta % 60,
 			mins = ((delta - secs)/60)%60,
