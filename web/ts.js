@@ -73,10 +73,10 @@ ts = (function() {
 		var dt = (new Date().getTime())/1000 - value,
 			Dt = max*24*60*60,
 			res = round(dt/Dt, 2);
+		if (res >= 1) return 1;
 		return 0.2 + 0.6*res;
 	});
 	Handlebars.registerHelper('progress', function(pct) {
-		console.log(pct);
 		if (pct >= 100) return;
 		return "background : linear-gradient(to right, rgba(0,0,0,0.5) "+pct+"%, rgba(0,0,0,0) "+pct+"%)";
 	});
