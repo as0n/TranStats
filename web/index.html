@@ -19,12 +19,11 @@
 					<th>id</th>
 					<th>Nom</th>
 					<th>Vitesse</th>
-					<th>Total</th>
-					<th>Envoyé</th>
+					<th>Taille</th>
 					<th>Ratio</th>
-					<th>Diff</th>
-					<th>1 jour</th>
-					<th>10 jours</th>
+					<th>&Delta;</th>
+					<th>&Delta;<sub>1j</sub></th>
+					<th>&Delta;<sub>10j</sub></th>
 					<th>Inactivité</th>
 				</tr>
 			</thead>
@@ -38,9 +37,8 @@
 				<td><abbr title="{{ hash }}" class="limited">{{ name }}</abbr> <span class="info">{{ downloadDir }}</span></td>
 				<td class="data">{{#if rateUpload}}<span class="glyphicon glyphicon-arrow-up"></span> {{speed rateUpload}}{{/if}} {{#if rateDownload}}<span class="glyphicon glyphicon-arrow-down"></span> {{speed rateDownload}}{{/if}}</td>
 				<td class="data"><abbr title="{{size downloadedEver}} téléchargés ({{ pct }} %)">{{size totalSize}}</abbr></td>
-				<td class="data">{{size uploadedEver}}</td>
 				<td class="data" style="color : {{colorRatio ratio}}"><abbr title="envoyé {{ altRatio }} fois">{{{ ratio }}}</abbr></td>
-				<td class="data" style="color : {{colorDiff diff}}">{{size diff}}</td>
+				<td class="data" style="color : {{colorDiff diff}}"><abbr title="{{size uploadedEver}} envoyé">{{size diff}}</abbr></td>
 				<td class="data" style="color : {{colorDeltaD deltaD}}; opacity : {{fade day.time 1}}">{{#if deltaD}}<abbr title="{{ago day.time}}{{#if deltaH}} | dernière heure : {{size deltaH}} ({{ago hour.time}}){{/if}}">{{size deltaD}}</abbr>{{/if}}</td>
 				<td class="data" style="color : {{colorDeltaTD deltaTD}}; opacity : {{fade tday.time 10}}">{{#if deltaTD}}<abbr title="{{ago tday.time}}">{{size deltaTD}}</abbr>{{/if}}</td>
 				<td class="data">{{{ago activityDate}}}</td>
