@@ -6,8 +6,8 @@
 
 ts = (function() {
 	var endpoint = "",
-		exts = ["o", "ko", "Mo", "Go", "To"],
-		speedExts = ["o/s", "ko/s", "Mo/s", "Go/s", "To/s"],
+		exts = ["o", "ko", "Mo", "Go", "To", "Po"],
+		speedExts = ["o/s", "ko/s", "Mo/s", "Go/s", "To/s", "Po/s"],
 		table = $('#mainTable tbody'),
 		loader = $("#loading"),
 		menu = $("#menu"),
